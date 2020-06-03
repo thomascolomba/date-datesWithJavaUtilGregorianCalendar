@@ -31,7 +31,22 @@ public class GregorianCalendarHandling {
 		showSomeGregorianCalendarAndTimezoneClassesBehaviourDependingOnSystemTimezone();
 		showSomeGregorianCalendarAndTimezoneClassesBehaviourNotDependingOnSystemTimezone();
 		showGregorianCalendarDontHandleLeapSecond();
+		showHowToAddressAnHourThatHappensTwiceDuringTheSameDayWhenTheClockGoesBackward();
+	}
+	
+	private static void showHowToAddressAnHourThatHappensTwiceDuringTheSameDayWhenTheClockGoesBackward() {
+		System.out.println("showHowToAddressAnHourThatHappensTwiceDuringTheSameDayWhenTheClockGoesBackward");
+		//London Sunday, October 25, 2:00 am -> 1:00 am. So 1:30 am happens twice. (see method showDSTLondonClockBackward()) 
+		GregorianCalendar gcLondonDSTBackward = new GregorianCalendar(TimeZone.getTimeZone("Europe/London"));
+		long timestampFirstTimeItSHalfOne = 1603585800000L;//1603585800000L is the timestamp for the first time it's 1:30 (before clock goes backward)
+		gcLondonDSTBackward.setTimeInMillis(timestampFirstTimeItSHalfOne);
+		showCalendarAndTime(gcLondonDSTBackward);
+		System.out.println(gcLondonDSTBackward.getTimeInMillis());
 		
+		long timestampSecondTimeItSHalfOne = 1603589400000L;//1603589400000L is the timestamp for the second time it's 1:30 (after clock goes backward)
+		gcLondonDSTBackward.setTimeInMillis(timestampSecondTimeItSHalfOne);
+		showCalendarAndTime(gcLondonDSTBackward);
+		System.out.println(gcLondonDSTBackward.getTimeInMillis());
 	}
 	
 	private static void showGregorianCalendarDontHandleLeapSecond() {
@@ -84,6 +99,7 @@ public class GregorianCalendarHandling {
 		showDSTNewYork();
 		showDSTLondon();
 		showDSTBerlin();
+		showDSTLondonClockBackward();
 	}
 	private static void showDSTNewYork() {
 		//8th of March 2020 2am -> 3am
@@ -100,6 +116,17 @@ public class GregorianCalendarHandling {
 		showCalendarAndTimeAndTimeZone(gcLondon);
 		gcLondon.add(Calendar.HOUR, 1);
 		showCalendarAndTimeAndTimeZone(gcLondon);
+	}
+	private static void showDSTLondonClockBackward() {
+		//25th of October 2020 2am -> 1am
+		GregorianCalendar gcLondon = new GregorianCalendar(TimeZone.getTimeZone("Europe/London"));
+		gcLondon.set(2020,  Calendar.OCTOBER,  25, 1, 30, 0);//the second time it's 1:30 am this day (after the clock went backward)
+		gcLondon.set(Calendar.MILLISECOND, 0);
+		showCalendarAndTimeAndTimeZone(gcLondon);
+		System.out.println(gcLondon.getTimeInMillis());//1603589400000
+		gcLondon.add(Calendar.HOUR, -1);//the first time (before the clock goes backward)
+		showCalendarAndTimeAndTimeZone(gcLondon);
+		System.out.println(gcLondon.getTimeInMillis());//1603585800000
 	}
 	private static void showDSTBerlin() {
 		//29th of March 2020 2am -> 3am

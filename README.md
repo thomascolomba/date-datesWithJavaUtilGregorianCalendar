@@ -61,6 +61,7 @@ II)The code<br/>
 <b>showSomeGregorianCalendarAndTimezoneClassesBehaviourDependingOnSystemTimezone()</b> shows that a GregorianCalendar instance behaviour depends of the execution environment (the operating system/jvm configuration) by default.<br/>
 <b>showSomeGregorianCalendarAndTimezoneClassesBehaviourNotDependingOnSystemTimezone()</b> shows how to have a GregorianCalendar behaving regardless of the system configuration.<br/>
 <b>showGregorianCalendarDontHandleLeapSecond()</b> shows GregorianCalendar don't handle leap seconds.<br/>
+<b>showHowToAddressAnHourThatHappensTwiceDuringTheSameDayWhenTheClockGoesBackward()</b> shows how a developer can set a GregorianCalendar to both times referred by the same hour if that hour happens twice in the same day (DST clock backward). It is done through elapsed milliseconds.<br/>
 <br/>
 
 
