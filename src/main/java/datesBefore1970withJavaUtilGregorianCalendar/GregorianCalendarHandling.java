@@ -30,7 +30,15 @@ public class GregorianCalendarHandling {
 		showHourDifferenceBetweenLondonAndNewYorkVariesDueToDST();
 		showSomeGregorianCalendarAndTimezoneClassesBehaviourDependingOnSystemTimezone();
 		showSomeGregorianCalendarAndTimezoneClassesBehaviourNotDependingOnSystemTimezone();
+		showGregorianCalendarDontHandleLeapSecond();
 		
+	}
+	
+	private static void showGregorianCalendarDontHandleLeapSecond() {
+		System.out.println("showGregorianCalendarDontHandleLeapSecond");
+		GregorianCalendar gc = new GregorianCalendar(2005, Month.DECEMBER.getValue(), 31, 23, 59, 59);
+		gc.add(Calendar.SECOND, 1);
+		System.out.println("Does GregorianCalendar handle the leap second at the end of 2005 : "+(gc.get(Calendar.YEAR) == 2005));
 	}
 	
 	private static void showSomeGregorianCalendarAndTimezoneClassesBehaviourDependingOnSystemTimezone() {

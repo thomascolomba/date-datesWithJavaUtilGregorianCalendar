@@ -60,6 +60,7 @@ II)The code<br/>
 <b>showHourDifferenceBetweenLondonAndNewYorkVariesDueToDST()</b> shows how time difference varies between New York and London due to DST not being applied at the same moment.<br/>
 <b>showSomeGregorianCalendarAndTimezoneClassesBehaviourDependingOnSystemTimezone()</b> shows that a GregorianCalendar instance behaviour depends of the execution environment (the operating system/jvm configuration) by default.<br/>
 <b>showSomeGregorianCalendarAndTimezoneClassesBehaviourNotDependingOnSystemTimezone()</b> shows how to have a GregorianCalendar behaving regardless of the system configuration.<br/>
+<b>showGregorianCalendarDontHandleLeapSecond()</b> shows GregorianCalendar don't handle leap seconds.<br/>
 <br/>
 
 
