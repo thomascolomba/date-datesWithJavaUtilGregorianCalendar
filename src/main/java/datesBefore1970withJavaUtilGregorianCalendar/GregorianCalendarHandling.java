@@ -3,7 +3,6 @@ package datesBefore1970withJavaUtilGregorianCalendar;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -51,7 +50,7 @@ public class GregorianCalendarHandling {
 	
 	private static void showGregorianCalendarDontHandleLeapSecond() {
 		System.out.println("showGregorianCalendarDontHandleLeapSecond");
-		GregorianCalendar gc = new GregorianCalendar(2005, Month.DECEMBER.getValue(), 31, 23, 59, 59);
+		GregorianCalendar gc = new GregorianCalendar(2005, Calendar.DECEMBER, 31, 23, 59, 59);
 		gc.add(Calendar.SECOND, 1);
 		System.out.println("Does GregorianCalendar handle the leap second at the end of 2005 : "+(gc.get(Calendar.YEAR) == 2005));
 	}
@@ -142,11 +141,10 @@ public class GregorianCalendarHandling {
 		try {
 			//parsing different timezones
 			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSZ", "2001-07-04T12:08:56.235-0700");
-			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", "2001-07-04T12:08:56.235-06:00");
-			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", "2001-07-04T12:08:56.235-00:00");
-			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", "2001-07-04T12:08:56.235+00:00");
-			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", "2001-07-04T12:08:56.235+01:00");
-			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", "2001-07-04T12:08:56.235+01:00");
+			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSZ", "2001-07-04T12:08:56.235-0600");
+			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSZ", "2001-07-04T12:08:56.235-0000");
+			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSZ", "2001-07-04T12:08:56.235+0000");
+			parseSomeStringsThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSZ", "2001-07-04T12:08:56.235+0100");
 			//parse dd/mm/yyy
 			parseSomeStringsThroughPatterns("dd/MM/yyyy", "01/01/2000");
 			parseSomeStringsThroughPatterns("dd/MM/yyyy-hh", "01/01/2000-08");
@@ -171,8 +169,7 @@ public class GregorianCalendarHandling {
 		showSomeDatesThroughPatterns("yyyy.MM.dd HH:mm:ss", myCal.getTime());
 		showSomeDatesThroughPatterns("yyyy.MM.dd HH:mm:ss:SSS", myCal.getTime());
 		showSomeDatesThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSSSSz", myCal.getTime());
-		showSomeDatesThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ", myCal.getTime());
-		showSomeDatesThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", myCal.getTime());//ISO 8601
+		showSomeDatesThroughPatterns("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ", myCal.getTime());//ISO 8601
 		//about "u" -> java 7 SimleDateFormat does not support "u" in pattern
 	}
 	
@@ -235,7 +232,7 @@ public class GregorianCalendarHandling {
 
 	private static void showAddingHourChangesDay() {
 		System.out.println("showAddingHourChangesDay");
-		GregorianCalendar myCal = new GregorianCalendar(2000, Month.JANUARY.getValue(), 1, 23, 50);
+		GregorianCalendar myCal = new GregorianCalendar(2000, Calendar.JANUARY, 1, 23, 50);
 		showCalendarAndTime(myCal);
 		myCal.add(Calendar.HOUR, 1);
 		System.out.println("+1 hour");
@@ -245,28 +242,28 @@ public class GregorianCalendarHandling {
 	private static void showBeginningOfPurelyGregorianCalendar() {
 		// Fri Oct 15 01:00:00 CET 1582
 		System.out.println("showBeginningOfPurelyGregorianCalendar");
-		GregorianCalendar myCal = new GregorianCalendar(1582, Month.OCTOBER.getValue(), 15);
+		GregorianCalendar myCal = new GregorianCalendar(1582, Calendar.OCTOBER, 15);
 		showCalendar(myCal);
 	}
 	
 	private static void showYear1970() {
 		System.out.println("showYear1970");
-		GregorianCalendar myCal = new GregorianCalendar(1970, Month.JANUARY.getValue(), 1);
+		GregorianCalendar myCal = new GregorianCalendar(1970, Calendar.JANUARY, 1);
 		showCalendar(myCal);
 	}
 	private static void showYearMinus5() {
 		System.out.println("showYearMinus5");
-		GregorianCalendar myCal = new GregorianCalendar(-(5-1), Month.JANUARY.getValue(), 1);
+		GregorianCalendar myCal = new GregorianCalendar(-(5-1), Calendar.JANUARY, 1);
 		showCalendarAndEra(myCal);
 	}
 	private static void showYearSumerCivilization() {
 		System.out.println("showYearSumerCivilization");
-		GregorianCalendar myCal = new GregorianCalendar(-3400, Month.JANUARY.getValue(), 1);//more or less 3400 years
+		GregorianCalendar myCal = new GregorianCalendar(-3400, Calendar.JANUARY, 1);//more or less 3400 years
 		showCalendarAndEra(myCal);
 	}
 	private static void showYearTyrannosaurus() {
 		System.out.println("showYearTyrannosaurus");
-		GregorianCalendar myCal = new GregorianCalendar(-68000000, Month.JANUARY.getValue(), 1);//more or less 68000000 years, let's not be picky
+		GregorianCalendar myCal = new GregorianCalendar(-68000000, Calendar.JANUARY, 1);//more or less 68000000 years, let's not be picky
 		showCalendarAndEra(myCal);
 	}
 	
@@ -292,7 +289,11 @@ public class GregorianCalendarHandling {
 	private static void parseSomeStringsThroughPatterns(String pattern, String sDate) throws ParseException {
 		DateFormat myDateFormat = new SimpleDateFormat(pattern);
 		Date result = myDateFormat.parse(sDate);
-		System.out.println(result);
+//		System.out.println(result);
+//		GregorianCalendar cal = new GregorianCalendar();
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(result);
+		showCalendarAndTimeAndTimeZone(cal);
 	}
 	private static void whenItIsXHourAtYTimezoneThenWhatTimeIsItInZTimezone(int year, int month, int day, int hour, int min, int sec, String timezoneIdY, String timezoneIdZ) {
 		GregorianCalendar gc = new GregorianCalendar(TimeZone.getTimeZone(timezoneIdY));
